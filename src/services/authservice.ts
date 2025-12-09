@@ -35,7 +35,7 @@ export function GetUserId() {
 
 export async function LoginService(request: ILoginRequest) {
   try {
-    const res = await axios.post(`${API_URL}/users/login`, request);
+    const res = await axios.post(`${API_URL}/api/users/login`, request);
     return res;
   } catch (err) {
     console.log(`Login request failed`, err);
@@ -45,7 +45,7 @@ export async function LoginService(request: ILoginRequest) {
 
 export async function RegisterService(request: IRegisterRequest) {
   try {
-    const res = await axios.post(`${API_URL}/users/register`, request);
+    const res = await axios.post(`${API_URL}/api/users/register`, request);
     return res;
   } catch (err) {
     console.log("Register request failed", err);

@@ -4,7 +4,9 @@ import { IGetDocumentsResponse } from "../models/response/IDocumentsResponse";
 
 export async function getDocuments(): Promise<IGetDocumentsResponse> {
   try {
-    const res = await axiosInstance.get(`${API_URL}/documents/get_documents`);
+    const res = await axiosInstance.get(
+      `${API_URL}/api/documents/get_documents`
+    );
     return res.data;
   } catch (err) {
     console.log(err);
@@ -15,7 +17,7 @@ export async function getDocuments(): Promise<IGetDocumentsResponse> {
 export async function createDocument(request: { title: string }) {
   try {
     const res = await axiosInstance.post(
-      `${API_URL}/documents/create_document`,
+      `${API_URL}/api/documents/create_document`,
       request
     );
     return res;
@@ -31,7 +33,7 @@ export async function updateDocumentContent(request: {
 }) {
   try {
     const res = await axiosInstance.patch(
-      `${API_URL}/documents/save_document`,
+      `${API_URL}/api/documents/save_document`,
       request
     );
     return res.data;
@@ -47,7 +49,7 @@ export async function updateDocument(request: {
 }) {
   try {
     const res = await axiosInstance.post(
-      `${API_URL}/documents/update_document`,
+      `${API_URL}/api/documents/update_document`,
       request
     );
     return res.data;
@@ -60,7 +62,7 @@ export async function updateDocument(request: {
 export async function deleteDocument(request: { documentId: string }) {
   try {
     const res = await axiosInstance.post(
-      `${API_URL}/documents/delete_document`,
+      `${API_URL}/api/documents/delete_document`,
       request
     );
     return res.data;

@@ -7,7 +7,7 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { updateDocumentContent } from "../services/documentService";
-import { API_HTTP } from "../config/constants";
+import { API_URL } from "../config/constants";
 
 export default function DocumentEditor() {
   const { id: documentId } = useParams();
@@ -34,7 +34,7 @@ export default function DocumentEditor() {
   }, [documentId, content]);
 
   useEffect(() => {
-    socketRef.current = io(API_HTTP);
+    socketRef.current = io(API_URL);
 
     socketRef.current.on("connect", () => {
       console.log(socketRef.current?.id);
