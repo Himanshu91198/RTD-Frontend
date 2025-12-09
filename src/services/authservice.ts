@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { API_URL } from "../config/constants";
 import { jwtDecode } from "jwt-decode";
 import type { ILoginResponse } from "../models/response/ILoginResponse";
@@ -39,6 +39,7 @@ export async function LoginService(request: ILoginRequest) {
     return res;
   } catch (err) {
     console.log(`Login request failed`, err);
+    throw err;
   }
 }
 
@@ -46,7 +47,10 @@ export async function RegisterService(request: IRegisterRequest) {
   try {
     const res = await axios.post(`${API_URL}/users/register`, request);
     return res;
-  } catch (err) {
-    console.log("Register request failed", err);
+  } catch (err: AxiosError | unknown) {
+    const axiosErr = err as AxiosError;
+    console.log("Error response:", axiosErr.response?.data); // 👈 ADD THIS
+    console.log("Status:", axiosErr.response?.status); // 👈 ADD THIS
+    throw err;
   }
 }
